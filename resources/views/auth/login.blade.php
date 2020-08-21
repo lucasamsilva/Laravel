@@ -66,7 +66,7 @@
                             </a>
                         @endif
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Ainda não tem conta? Registre-se aqui</a>
+                            <a href="{{ route('registrar') }}">Ainda não tem conta? Registre-se aqui</a>
                         @endif
                     </div>
             </form>

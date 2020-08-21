@@ -15,11 +15,11 @@
 
 <body>
     <div>
-        <div class="form-login">
+        <div class="form-register">
             <div class="form-title">
                 <span>Crie sua conta</span>
             </div>
-            <form class="form-fields" method="POST" action="{{ route('register') }}">
+            <form class="form-fields" method="POST" action="{{ route('registrar_usuario') }}">
                 @csrf
 
                 <div>
@@ -27,7 +27,7 @@
 
                     <div>
                         <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name"
-                            value="{{ old('name') }}" required autocomplete="name" autofocus />
+                            value="{{ old('name') }}" autocomplete="name" autofocus />
 
                         @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
 
                     <div>
                         <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email"
-                            value="{{ old('email') }}" required autocomplete="email" />
+                            value="{{ old('email') }}" autocomplete="email" />
 
                         @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
 
                     <div>
                         <input id="password" type="password" class="@error('password') is-invalid @enderror"
-                            name="password" required autocomplete="new-password" />
+                            name="password" autocomplete="new-password" />
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -71,8 +71,13 @@
                     <label for="password-confirm">Confirme a senha:</label>
 
                     <div>
-                        <input id="password-confirm" type="password" name="password_confirmation" required
+                        <input id="password-confirm" class="@error('password') is-invalid @enderror" type="password" name="password_confirmation"
                             autocomplete="new-password" />
+                        @error('password_confirmation')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                     </div>
                 </div>
 

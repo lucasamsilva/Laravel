@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -62,12 +63,28 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    public function registrar(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|unique:users',
+            'password' => 'required|min:8|same:password_confirmation',
+            'password_confirmation' => 'required'
         ]);
+
+        $usuario = new User([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password'])
+        ]);
+
+        $usuario->save();
+
+        return redirect('login');
+    }
+    
+    public function index() {
+        return view('auth.register');
     }
 }
