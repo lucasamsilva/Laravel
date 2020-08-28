@@ -29,7 +29,9 @@ Route::get('/clientes', 'ClienteController@index')->name('listar_clientes');
 
 Route::get('/novo_cliente', 'ClienteController@novo_cliente')->name('novo_cliente');
 
-Route::get('/clientes/{id}', 'ClienteController@alterar_cliente')->name('alterar_cliente');
+Route::get('/clientes/{id}', 'ClienteController@visualizar_cliente')->name('visualizar_cliente');
+
+Route::get('/clientes/alterar/{id}', 'ClienteController@alterar_cliente')->name('alterar_cliente');
 
 Route::get('/clientes/excluir/{id}', 'ClienteController@excluir_cliente')->name('excluir_cliente');
 

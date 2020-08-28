@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Listar
+@endsection
+
 @section('content-header')
     <div class="col-6">
         <h1>Lista de Clientes</h1>
@@ -15,7 +19,6 @@
             <table class="table table-hover text-nowrap">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>Nome</th>
                         <th>Endereço</th>
                         <th>CPF</th>
@@ -27,21 +30,23 @@
                 <tbody>
                     @foreach ($clientes as $cliente)
                         <tr>
-                            <td>{{ $cliente->id }}</td>
                             <td>{{ $cliente->nome }}</td>
                             <td>{{ $cliente->endereco }}</td>
                             <td>{{ $cliente->cpf }}</td>
                             <td>{{ $cliente->rg }}</td>
                             <td>{{ $cliente->telefone }}</td>
                             <td>
-                            <a class="btn btn-warning" href="clientes/{{ $cliente->id }}"><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-dark" href="clientes/{{ $cliente->id }}"><i class="fa fa-address-card-o"></i></a>
+                            <a class="btn btn-warning" href="clientes/alterar/{{ $cliente->id }}"><i class="fa fa-pencil" style="color: #FFF"></i></a>
                             <a class="btn btn-danger" href="clientes/excluir/{{ $cliente->id }}"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $clientes->links() }}
+            <div class="float-right">
+                {{ $clientes->links() }}
+            </div>
         </div>
     </div>
 @endsection

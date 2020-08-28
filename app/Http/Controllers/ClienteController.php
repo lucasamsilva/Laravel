@@ -26,6 +26,12 @@ class ClienteController extends Controller
         return redirect('/clientes');
     }
 
+    public function visualizar_cliente($id) {
+        $cliente = clientes::find($id);
+        return view('cliente.consultar', ['cliente' => $cliente, 'readonly' => true]);
+    }
+
+
     public function alterar_cliente($id) {
         $cliente = clientes::find($id);
         return view('cliente.alterar', ['cliente' => $cliente]);

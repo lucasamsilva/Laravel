@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Alterar
+@endsection
+
 @section('content-header')
     <div class="col-6">
         <h1>Alterar Cliente</h1>

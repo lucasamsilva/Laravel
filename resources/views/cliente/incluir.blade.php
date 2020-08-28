@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Incluir
+@endsection
+
 @section('content-header')
     <div class="col-6">
         <h1>Novo Cliente</h1>

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Excluir
+@endsection
+
 @section('content-header')
     <div class="col-6">
         <h1>Excluir Cliente</h1>
