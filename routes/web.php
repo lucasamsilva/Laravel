@@ -24,3 +24,17 @@ Route::post('/registrar', 'Auth\RegisterController@registrar')->name('registrar_
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/clientes', 'ClienteController@index')->name('listar_clientes');
+
+Route::get('/novo_cliente', 'ClienteController@novo_cliente')->name('novo_cliente');
+
+Route::get('/clientes/{id}', 'ClienteController@alterar_cliente')->name('alterar_cliente');
+
+Route::get('/clientes/excluir/{id}', 'ClienteController@excluir_cliente')->name('excluir_cliente');
+
+Route::post('/alterar_cliente/{id}','ClienteController@alterar')->name('alterar');
+
+Route::post('/excluir_cliente/{id}','ClienteController@excluir')->name('excluir');
+
+Route::post('/salvar_cliente', 'ClienteController@salvar_cliente')->name('salvar_cliente');

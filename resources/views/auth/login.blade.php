@@ -60,14 +60,10 @@
                         <button type="submit">
                             {{ __('Login') }}
                         </button>
-                        @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}">
                                 {{ __('Esqueceu sua senha? Clique aqui') }}
                             </a>
-                        @endif
-                        @if (Route::has('register'))
                             <a href="{{ route('registrar') }}">Ainda não tem conta? Registre-se aqui</a>
-                        @endif
                     </div>
             </form>
         </div>
