@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'Auth\LoginController@login')->name('login');
-
-Route::get('/login', 'Auth\LoginController@login')->name('login');
+Route::get('/', function() { return redirect('/login'); });
 
 Route::get('/registrar', 'Auth\RegisterController@index')->name('registrar');
 
@@ -24,6 +22,8 @@ Route::post('/registrar', 'Auth\RegisterController@registrar')->name('registrar_
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Rotas Cliente
 
 Route::get('/clientes', 'ClienteController@index')->name('listar_clientes');
 
@@ -40,3 +40,11 @@ Route::post('/alterar_cliente/{id}','ClienteController@alterar')->name('alterar'
 Route::post('/excluir_cliente/{id}','ClienteController@excluir')->name('excluir');
 
 Route::post('/salvar_cliente', 'ClienteController@salvar_cliente')->name('salvar_cliente');
+
+// Livros
+
+Route::get('/livros', function() {
+    $livros = App\Livro::find(1);
+
+    return $livros->editora;
+});
