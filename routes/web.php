@@ -43,8 +43,22 @@ Route::post('/salvar_cliente', 'ClienteController@salvar_cliente')->name('salvar
 
 // Livros
 
-Route::get('/livros', function() {
-    $livros = App\Livro::find(1);
+Route::get('/livros', 'LivroController@index')->name('listar_livros');
 
-    return $livros->editora;
-});
+Route::get('/livros/autor/{id}', 'LivroController@livros_autor')->name('listar_livros_autor');
+
+Route::get('/livros/editora/{id}', 'LivroController@livros_editora')->name('listar_livros_editora');
+
+Route::get('/livros/novo', 'LivroController@novo_livro')->name('novo_livro');
+
+Route::post('/livros/salvar', 'LivroController@salvar_livro')->name('salvar_livro');
+
+Route::get('/livros/excluir/{id}', 'LivroController@excluir_livro')->name('excluir_livro');
+
+Route::post('/livros/excluir/{id}', 'LivroController@excluir')->name('exclusao_livro');
+
+Route::get('/livros/{id}', 'LivroController@consultar_livro')->name('consultar_livro');
+
+Route::get('/livros/alterar/{id}', 'LivroController@alterar_livro')->name('alterar_livro');
+
+Route::post('/livros/alterar/{id}', 'LivroController@alterar')->name('alteracao_livro');
