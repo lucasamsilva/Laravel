@@ -76,15 +76,41 @@ class RegisterController extends Controller
         $usuario = new User([
             'name' => $request['name'],
             'email' => $request['email'],
-            'password' => Hash::make($request['password'])
+            'password' => Hash::make($request['password']),
+            'is_active' => '0'
         ]);
 
-        $usuario->save();
+        $usuario->sexo = 'M';
+
+        if($usuario->save()) {
+            $usuario->sendEmail($usuario);
+        }
 
         return redirect('login');
     }
     
+    public function forgotPassword(Request $request) {
+
+        $validator = Validator::make($request->all, [
+            'email' => 'required|exists:user,email'
+        ]);
+
+        $usuario = User::where('email', $request->email)->first();
+
+        if($usuario) {
+            $resposta = User::requestPasswordReset($usuario->email);
+            if($resposta) {
+                return redirect()->route('login');
+            }
+        }
+
+    }
+
     public function index() {
         return view('auth.register');
+    }
+
+    public function mailpage() {
+        return view('auth.check_reset_email');
     }
 }

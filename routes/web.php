@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() { return redirect('/login'); });
+Route::get('/', function() { return redirect('/login'); })->name('login');
 
 Route::get('/registrar', 'Auth\RegisterController@index')->name('registrar');
 
@@ -27,7 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/clientes', 'ClienteController@index')->name('listar_clientes');
 
-Route::get('/novo_cliente', 'ClienteController@novo_cliente')->name('novo_cliente');
+Route::get('/clientes/novo', 'ClienteController@novo_cliente')->name('novo_cliente');
 
 Route::get('/clientes/{id}', 'ClienteController@visualizar_cliente')->name('visualizar_cliente');
 
@@ -62,3 +62,21 @@ Route::get('/livros/{id}', 'LivroController@consultar_livro')->name('consultar_l
 Route::get('/livros/alterar/{id}', 'LivroController@alterar_livro')->name('alterar_livro');
 
 Route::post('/livros/alterar/{id}', 'LivroController@alterar')->name('alteracao_livro');
+
+//USUARIOS
+
+Route::get('/usuarios', 'UsuarioController@index')->name('listar_usuarios');
+
+Route::get('/usuarios/novo', 'UsuarioController@novo_usuario')->name('novo_usuario');
+
+Route::post('/usuarios/novo', 'UsuarioController@registrar')->name('salvar_usuario');
+
+Route::get('/usuarios/alterar/{id}', 'UsuarioController@get_alterar_usuario')->name('get_alterar_usuario');
+
+Route::post('/usuarios/alterar/{id}', 'UsuarioController@alterar_usuario')->name('alterar_usuario');
+
+Route::get('/usuarios/{id}', 'UsuarioController@visualizar_usuario')->name('visualizar_usuario');
+
+Route::get('/usuarios/excluir/{id}', 'UsuarioController@get_excluir_usuario')->name('get_excluir_usuario');
+
+Route::post('/usuarios/excluir/{id}', 'UsuarioController@excluir_usuario')->name('excluir_usuario');

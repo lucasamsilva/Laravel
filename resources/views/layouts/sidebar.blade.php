@@ -13,12 +13,13 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="https://scontent.faru1-1.fna.fbcdn.net/v/t1.0-9/52896900_2292284794170006_1733221266183159808_n.jpg?_nc_cat=110&_nc_sid=09cbfe&_nc_ohc=QcqdiAlzXhwAX9LJtEd&_nc_ht=scontent.faru1-1.fna&oh=af1b174a1219002316f861c7206a822c&oe=5F6D7B6D"
-                    class="img-circle elevation-2" alt="User Image">
+            <img src="{{  Auth::user()->profile_pic == '' ? '/storage/avatar.jpg' : Auth::user()->profile_pic}}" class="img-circle elevation-2" alt="User Image">
             </div>
+            @if(Auth::user())
             <div class="info">
                 <a href="#" class="d-block">{{ Auth::user()->name }}</a>
             </div>
+            @endif
         </div>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -26,15 +27,22 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview">
-                    <a href="{{ route('listar_clientes') }}" class="nav-link active">
-                        <i class="nav-icon fa fa-users"></i>
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                <li class="nav-item">
+                <a href="{{ route('listar_clientes') }}" class="nav-link {{ (request()->is('clientes*')) ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-car" aria-hidden="true"></i>
                         <p>
                             Clientes
-                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('listar_usuarios') }}" class="nav-link {{ (request()->is('usuarios*')) ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-desktop" aria-hidden="true"></i>
+                        <p>
+                            Usuarios
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

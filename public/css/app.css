@@ -10908,3 +10908,6 @@ a.text-dark:focus {
   }
 }
 
+.input_foto_perfil {
+  display: none;
+}

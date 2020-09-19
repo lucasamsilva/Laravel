@@ -16,6 +16,13 @@
 </head>
 <body>
     <div>
+        @if (Session::has('fail'))
+        <div class="alert alert-danger" role="alert">
+          <span>
+            <strong>{{ Session::get('fail') }}</strong>
+          </span>
+        </div>
+        @endif
         <div class="form-login">
             <div class="logo">
                 <i class="fa fa-wrench fa-5x" aria-hidden="true"></i>
@@ -28,7 +35,7 @@
                     <label for="email">E-mail: </label>
 
                     <div>
-                        <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input id="email" type="text" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autofocus>
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -41,7 +48,7 @@
                     <label for="password">Senha:</label>
 
                     <div>
-                        <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" autocomplete="current-password">
 
                         @error('password')
                             <span class="invalid-feedback" role="alert">
