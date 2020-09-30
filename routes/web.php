@@ -80,3 +80,7 @@ Route::get('/usuarios/{id}', 'UsuarioController@visualizar_usuario')->name('visu
 Route::get('/usuarios/excluir/{id}', 'UsuarioController@get_excluir_usuario')->name('get_excluir_usuario');
 
 Route::post('/usuarios/excluir/{id}', 'UsuarioController@excluir_usuario')->name('excluir_usuario');
+
+// FOTO DE USUÁRIO
+
+Route::post('/imagem/store', 'ImageController@store')->name('imagem.store');

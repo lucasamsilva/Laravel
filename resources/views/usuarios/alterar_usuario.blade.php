@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <form method="post" action="">
+    <form method="post" action="" enctype="multipart/form-data">
         @csrf
         @include('usuarios.__form')
         <div class="row mt-2">

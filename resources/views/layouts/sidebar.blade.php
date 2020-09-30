@@ -13,7 +13,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-            <img src="{{  Auth::user()->profile_pic == '' ? '/storage/avatar.jpg' : Auth::user()->profile_pic}}" class="img-circle elevation-2" alt="User Image">
+            <img src="{{  Auth::user()->profile_pic == '' ? Auth::user()->sexo == 'M' ? '/storage/img/avatar-masculino.jpg' : '/storage/img/avatar-feminino.jpg' : Auth::user()->profile_pic}}" class="img-circle elevation-2" alt="User Image">
             </div>
             @if(Auth::user())
             <div class="info">

@@ -37,6 +37,21 @@ class UsuarioController extends Controller
             'password' => Hash::make($request['password'])
         ]);
 
+        if($request->hasFile('profile_pic') && $request->file('profile_pic')->isValid()){
+
+            $name = $request->file('profile_pic')->getClientOriginalName();
+            $horario = time();
+    
+            $filename = "{$horario}_{$name}";
+            $databasename = "/storage/img/{$filename}";
+    
+            $upload = $request->file('profile_pic')->storeAs('img', $filename);
+            if(!$upload) {
+                return redirect()->back()->with('error', 'falha ao fazer upload')->withInput();
+            }
+            $usuario->profile_pic = $databasename;
+        }
+
         if($usuario->is_active == null) {
             $usuario->is_active = 0;
         }
@@ -52,6 +67,8 @@ class UsuarioController extends Controller
     }
 
     public function alterar_usuario(Request $request, $id) {
+
+      
         
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
@@ -59,6 +76,22 @@ class UsuarioController extends Controller
         ]);
 
         $usuario = User::find($id);
+        $filename = null;
+
+        if($request->hasFile('profile_pic') && $request->file('profile_pic')->isValid()){
+
+            $name = $request->file('profile_pic')->getClientOriginalName();
+            $horario = time();
+    
+            $filename = "{$horario}_{$name}";
+            $databasename = "/storage/img/{$filename}";
+    
+            $upload = $request->file('profile_pic')->storeAs('img', $filename);
+            if(!$upload) {
+                return redirect()->back()->with('error', 'falha ao fazer upload')->withInput();
+            }
+            $usuario->profile_pic = $databasename;
+        }
 
         if($usuario->email == $request['email']) {
             $usuario->name = $request['name'];
