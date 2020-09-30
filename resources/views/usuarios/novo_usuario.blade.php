@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <form method="post" action="{{ route('salvar_usuario') }}" enctype=”multipart/form-data”>
+    <form method="post" action="{{ route('salvar_usuario') }}" enctype="multipart/form-data">
         @csrf
         @include('usuarios.__form')
         <div class="row mt-2">

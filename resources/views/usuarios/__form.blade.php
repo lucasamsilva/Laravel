@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <img id="imagem_perfil" class="mx-auto d-block"
-            src="{{ $usuario->profile_pic == '' ? ($usuario->sexo == 'M' ? '/storage/img/avatar-masculino.jpg' : '/storage/img/avatar-feminino.jpg') : $usuario->profile_pic }}"
+            src="{{ $novo_usuario == false ? $usuario->profile_pic == '' ? ($usuario->sexo == 'M' ? '/storage/img/avatar-masculino.jpg' : '/storage/img/avatar-feminino.jpg') : $usuario->profile_pic : "/storage/img/avatar-masculino.jpg"}}"
             alt="" style="border-radius: 50%; width: 100px; height: 100px;">
     </div>
     @if (!$readonly ?? '')

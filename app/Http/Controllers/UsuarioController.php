@@ -22,6 +22,7 @@ class UsuarioController extends Controller
 
     public function registrar(Request $request)
     {
+
         $this->validate($request, [
             'name' => 'required|max:255',
             'email' => 'required|unique:users',
@@ -68,8 +69,6 @@ class UsuarioController extends Controller
 
     public function alterar_usuario(Request $request, $id) {
 
-      
-        
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'email' => 'required'
@@ -120,12 +119,12 @@ class UsuarioController extends Controller
     public function visualizar_usuario($id) {
 
         $usuario = User::find($id);
-        return view('usuarios/visualizar_usuario', ['usuario' => $usuario, 'readonly' => true]);
+        return view('usuarios/visualizar_usuario', ['novo_usuario' => false,'usuario' => $usuario, 'readonly' => true]);
     }
 
     public function get_excluir_usuario($id) {
         $usuario = User::find($id);
-        return view('usuarios/excluir_usuario', ['usuario' => $usuario, 'readonly' => true]);
+        return view('usuarios/excluir_usuario', ['novo_usuario' => false, 'usuario' => $usuario, 'readonly' => true]);
     }
 
     public function excluir_usuario($id) {
